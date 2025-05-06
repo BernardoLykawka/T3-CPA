@@ -1,9 +1,12 @@
+import os
 from flask import Flask, abort, jsonify, make_response, request
 import pandas as pd
 
 app = Flask(__name__)
 
-df = pd.read_csv('cars.csv')
+caminho_csv = os.path.join(os.path.dirname(__file__), 'cars.csv')
+
+df = pd.read_csv(caminho_csv)
 df['id'] = df.index  
 
 lista_carros = df.to_dict(orient='records')
@@ -75,7 +78,10 @@ def filtrar_carros():
 
     resultados = lista_carros
     for campo, valor in filtros.items():
-        resultados = [carro for carro in resultados if str(carro.get(campo)) == str(valor)]
+        resultados = [
+            carro for carro in resultados
+            if campo in carro and carro[campo] == valor
+        ]
 
     return jsonify(resultados)
 
