@@ -224,14 +224,14 @@
 		{
 			"name": "Filtrar colunas",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": []
 			},
 			"response": [
 				{
 					"name": "New Request",
 					"originalRequest": {
-						"method": "GET",
+						"method": "POST",
 						"header": []
 					},
 					"_postman_previewlanguage": null,
